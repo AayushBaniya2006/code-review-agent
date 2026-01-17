@@ -1,0 +1,56 @@
+# Akash SDL - Change-Aware Auditor Deployment
+# AI Code Review Agent | AkashML Hackathon Jan 2026
+#
+# DEPLOYMENT STEPS:
+# 1. Build: docker build -t YOUR_USERNAME/change-aware-auditor:latest .
+# 2. Push:  docker push YOUR_USERNAME/change-aware-auditor:latest
+# 3. Update image below with your Docker Hub username
+# 4. Deploy at: https://console.akash.network/
+#
+# IMPORTANT: Replace YOUR_DOCKERHUB_USERNAME with your actual Docker Hub username
+
+version: "2.0"
+
+services:
+  auditor:
+    image: acb06/change-aware-auditor:latest
+    expose:
+      - port: 8000
+        as: 80
+        to:
+          - global: true
+    env:
+      # SECURITY: Set your API key via Akash Console secrets - NEVER commit real keys!
+      - AKASHML_API_KEY=
+      - ENVIRONMENT=production
+      - LOG_LEVEL=INFO
+
+profiles:
+  compute:
+    auditor:
+      resources:
+        cpu:
+          units: 0.5
+        memory:
+          size: 512Mi
+        storage:
+          size: 1Gi
+
+  placement:
+    akash:
+      attributes:
+        host: akash
+      signedBy:
+        anyOf:
+          - akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63
+          - akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4
+      pricing:
+        auditor:
+          denom: uakt
+          amount: 10000
+
+deployment:
+  auditor:
+    akash:
+      profile: auditor
+      count: 1

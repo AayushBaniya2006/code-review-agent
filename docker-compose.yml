@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  code-review-agent:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: change-aware-auditor
+    ports:
+      - "8000:8000"
+    environment:
+      - AKASHML_API_KEY=${AKASHML_API_KEY}
+      - RATE_LIMIT_PER_MINUTE=${RATE_LIMIT_PER_MINUTE:-60}
+      - TRUST_PROXY_HEADERS=${TRUST_PROXY_HEADERS:-false}
+      - CACHE_TTL_SECONDS=${CACHE_TTL_SECONDS:-300}
+      - CACHE_MAX_ENTRIES=${CACHE_MAX_ENTRIES:-256}
+      - CHUNK_SIZE_CHARS=${CHUNK_SIZE_CHARS:-120000}
+      - ENVIRONMENT=development
+      - LOG_LEVEL=INFO
+    volumes:
+      # Mount for development hot-reload (optional)
+      - ./app:/app/app:ro
+      - ./templates:/app/templates:ro
+      - ./static:/app/static:ro
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  # Optional: Add Redis for caching in future
+  # redis:
+  #   image: redis:alpine
+  #   ports:
+  #     - "6379:6379"

@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change-Aware Auditor | AI-Powered Code Review</title>
+    <meta name="description" content="AI-powered code analysis with evidence-backed findings. Catch vulnerabilities, improve quality, and ship faster with confidence.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <!-- Hackathon Notice Banner -->
+    <div class="demo-expired-banner">
+        <strong>DEMO NOT FUNCTIONAL</strong> — This was a 1-day hackathon project (AkashML Build Night, Jan 2026). API credits have expired.
+        <a href="https://github.com/AayushBaniya2006/code-review-agent">View source & run locally with your own API key →</a>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container">
+            <div class="nav__inner">
+                <a href="#" class="nav__logo">AUDITOR<span class="akash-red">.</span></a>
+
+                <ul class="nav__links">
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#process">How It Works</a></li>
+                    <li><a href="#demo">Try It</a></li>
+                    <li><a href="#stats">Impact</a></li>
+                </ul>
+
+                <a href="#demo" class="nav__cta">
+                    Try Free
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                    </svg>
+                </a>
+
+                <button class="nav__mobile-toggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero section">
+        <div class="container">
+            <div class="hero__inner">
+                <div class="hero__content">
+                    <div class="hero__badge hero__badge--akash">
+                        <span class="akash-dot"></span>
+                        Hackathon Project &middot; AkashML Build Night &middot; Jan 2026 &middot; Demo Expired
+                    </div>
+
+                    <h1 class="hero__title">
+                        <span>Code Reviews That Think,</span>
+                        <span><em class="text-italic">Security</em> That Scales<span class="akash-red">.</span></span>
+                    </h1>
+
+                    <p class="hero__subtitle">
+                        AI-powered code analysis with evidence-backed findings,
+                        running on decentralized compute. Ship secure code with confidence.
+                    </p>
+
+                    <div class="hero__ctas">
+                        <a href="#demo" class="btn btn--primary">
+                            Try It Now
+                            <svg class="btn__arrow btn__arrow--diagonal" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                            </svg>
+                        </a>
+                        <a href="#features" class="btn btn--ghost">
+                            Learn More
+                            <svg class="btn__arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12H19M19 12L12 5M19 12L12 19"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="hero__visual">
+                    <div class="sphere">
+                        <div class="sphere__orbit"></div>
+                        <div class="sphere__outer"></div>
+                        <div class="sphere__inner"></div>
+                        <div class="sphere__lines"></div>
+                        <div class="sphere__center">
+                            <!-- Akash Network Logo -->
+                            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M50 10L85 30V70L50 90L15 70V30L50 10Z" stroke="#FF4D4F" stroke-width="2" fill="none"/>
+                                <path d="M50 25L70 37V63L50 75L30 63V37L50 25Z" stroke="#FF4D4F" stroke-width="1.5" fill="rgba(255,77,79,0.1)"/>
+                                <circle cx="50" cy="50" r="8" fill="#FF4D4F"/>
+                                <line x1="50" y1="10" x2="50" y2="25" stroke="#FF4D4F" stroke-width="1" opacity="0.5"/>
+                                <line x1="50" y1="75" x2="50" y2="90" stroke="#FF4D4F" stroke-width="1" opacity="0.5"/>
+                                <line x1="15" y1="30" x2="30" y2="37" stroke="#FF4D4F" stroke-width="1" opacity="0.5"/>
+                                <line x1="85" y1="30" x2="70" y2="37" stroke="#FF4D4F" stroke-width="1" opacity="0.5"/>
+                                <line x1="15" y1="70" x2="30" y2="63" stroke="#FF4D4F" stroke-width="1" opacity="0.5"/>
+                                <line x1="85" y1="70" x2="70" y2="63" stroke="#FF4D4F" stroke-width="1" opacity="0.5"/>
+                            </svg>
+                        </div>
+                        <div class="sphere__dot sphere__dot--1"></div>
+                        <div class="sphere__dot sphere__dot--2"></div>
+                        <div class="sphere__dot sphere__dot--3"></div>
+                        <div class="sphere__dot sphere__dot--4"></div>
+                        <div class="sphere__dot sphere__dot--5"></div>
+                        <div class="sphere__dot sphere__dot--6"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Video Section -->
+    <section class="section video-section">
+        <div class="container">
+            <div class="section__header" style="text-align: center; margin-bottom: 40px;">
+                <h2>Watch it <em class="text-italic">in action</em></h2>
+                <p class="section__description">See how the AI-powered code review works</p>
+            </div>
+            <div class="video-container">
+                <video controls playsinline preload="metadata" poster="">
+                    <source src="/static/demo-video.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    </section>
+
+    <!-- Marquee -->
+        <div class="marquee__track">
+            <div class="marquee__content">
+                <span class="marquee__item">Security Analysis</span>
+                <span class="marquee__item">Code Quality</span>
+                <span class="marquee__item marquee__item--akash">Decentralized AI</span>
+                <span class="marquee__item">Performance Review</span>
+                <span class="marquee__item">Best Practices</span>
+                <span class="marquee__item marquee__item--akash">Akash Network</span>
+                <span class="marquee__item">Evidence-Backed</span>
+                <span class="marquee__item">Open Compute</span>
+            </div>
+            <div class="marquee__content" aria-hidden="true">
+                <span class="marquee__item">Security Analysis</span>
+                <span class="marquee__item">Code Quality</span>
+                <span class="marquee__item marquee__item--akash">Decentralized AI</span>
+                <span class="marquee__item">Performance Review</span>
+                <span class="marquee__item">Best Practices</span>
+                <span class="marquee__item marquee__item--akash">Akash Network</span>
+                <span class="marquee__item">Evidence-Backed</span>
+                <span class="marquee__item">Open Compute</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <section id="features" class="section">
+        <div class="container">
+            <div class="section-label">01 &mdash; Capabilities</div>
+
+            <div class="section__header">
+                <h2>Comprehensive analysis<br><em class="text-italic">for modern teams</em></h2>
+                <p class="section__description">
+                    Four dimensions of code analysis powered by decentralized LLMs
+                    on Akash Network. Evidence-backed analysis explains exactly
+                    why issues matter and how to fix them.
+                </p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card reveal">
+                    <div class="feature-card__icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-card__title">Security Audit</h3>
+                    <p class="feature-card__description">
+                        Detects SQL injection, XSS, hardcoded secrets, path traversal,
+                        and other OWASP Top 10 vulnerabilities with CWE references.
+                    </p>
+                    <div class="feature-card__tags">
+                        <span class="tag">CWE-89</span>
+                        <span class="tag">CWE-79</span>
+                        <span class="tag">OWASP</span>
+                        <span class="tag tag--accent">40% weight</span>
+                    </div>
+                </div>
+
+                <div class="feature-card reveal">
+                    <div class="feature-card__icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-card__title">Code Quality</h3>
+                    <p class="feature-card__description">
+                        Evaluates function complexity, naming conventions, code structure,
+                        and maintainability with actionable improvement suggestions.
+                    </p>
+                    <div class="feature-card__tags">
+                        <span class="tag">Complexity</span>
+                        <span class="tag">Naming</span>
+                        <span class="tag">Structure</span>
+                        <span class="tag tag--accent">25% weight</span>
+                    </div>
+                </div>
+
+                <div class="feature-card reveal">
+                    <div class="feature-card__icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-card__title">Performance</h3>
+                    <p class="feature-card__description">
+                        Identifies N+1 queries, inefficient algorithms, memory leaks,
+                        and resource bottlenecks before they reach production.
+                    </p>
+                    <div class="feature-card__tags">
+                        <span class="tag">O(n) analysis</span>
+                        <span class="tag">N+1 queries</span>
+                        <span class="tag tag--accent">20% weight</span>
+                    </div>
+                </div>
+
+                <div class="feature-card reveal">
+                    <div class="feature-card__icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M9 11l3 3L22 4"/>
+                            <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-card__title">Best Practices</h3>
+                    <p class="feature-card__description">
+                        Reviews error handling, documentation, type safety, logging,
+                        and testability to ensure production-ready code.
+                    </p>
+                    <div class="feature-card__tags">
+                        <span class="tag">Error handling</span>
+                        <span class="tag">Docs</span>
+                        <span class="tag">Testing</span>
+                        <span class="tag tag--accent">15% weight</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="process" class="section" style="background: var(--bg-secondary); border-top: 1px solid var(--border-light);">
+        <div class="container">
+            <div class="section-label">02 &mdash; Process</div>
+
+            <div class="section__header">
+                <h2>From diff to decision<br><em class="text-italic">in seconds</em></h2>
+                <p class="section__description">
+                    Paste your git diff, select your audit preferences, and get
+                    comprehensive analysis with clear evidence.
+                </p>
+            </div>
+
+            <div class="process-grid">
+                <div class="process-step reveal">
+                    <div class="process-step__number">01</div>
+                    <h3 class="process-step__title">Paste Your Diff</h3>
+                    <p class="process-step__description">
+                        Copy any git diff from your terminal, PR, or code review tool.
+                        Supports all major programming languages.
+                    </p>
+                </div>
+
+                <div class="process-step reveal">
+                    <div class="process-step__number">02</div>
+                    <h3 class="process-step__title">AI Analyzes</h3>
+                    <p class="process-step__description">
+                        Evidence-backed analysis traces data flows, identifies patterns,
+                        and cites exact diff lines.
+                    </p>
+                </div>
+
+                <div class="process-step reveal">
+                    <div class="process-step__number">03</div>
+                    <h3 class="process-step__title">Get Recommendations</h3>
+                    <p class="process-step__description">
+                        Receive scored results with severity ratings, code snippets,
+                        and specific suggestions to fix each issue.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section id="demo" class="section demo-section">
+        <div class="container">
+            <div class="section-label">03 &mdash; Try It Now</div>
+
+            <div class="section__header">
+                <h2>See it <em class="text-italic">in action</em></h2>
+                <p class="section__description">
+                    Paste a git diff below and watch the AI analyze your code changes
+                    with evidence-backed findings.
+                </p>
+                <p style="background: #fef2f2; border: 1px solid #fecaca; color: #991b1b; padding: 12px 16px; border-radius: 8px; margin-top: 16px; font-size: 14px;">
+                    <strong>Note:</strong> The demo API credits have expired. To use this tool, clone the repo and provide your own <code>AKASHML_API_KEY</code>.
+                </p>
+            </div>
+
+            <div class="demo-container">
+                <div class="audit-tool">
+                    <!-- Input Form -->
+                    <div class="audit-tool__input-group">
+                        <label class="audit-tool__label" for="diff-input">
+                            Paste your Git Diff
+                        </label>
+                        <textarea
+                            id="diff-input"
+                            class="audit-tool__textarea"
+                            placeholder="Paste your git diff here...">diff --git a/auth.py b/auth.py
+--- a/auth.py
++++ b/auth.py
+@@ -1,6 +1,10 @@
++import subprocess
++
+ def authenticate_user(username, password):
+-    hashed = hash_password(password)
+-    return db.verify_credentials(username, hashed)
++    query = f"SELECT * FROM users WHERE username = '{username}' AND password = '{password}'"
++    return db.execute(query)
+
++def run_backup(filename):
++    subprocess.call(f"tar -czf /backups/{filename}.tar.gz /data", shell=True)
++
+ def render_greeting(name):
+-    return f"Hello, {escape_html(name)}!"
++    return f"&lt;h1&gt;Hello, {name}!&lt;/h1&gt;"</textarea>
+                    </div>
+
+                    <div class="audit-tool__options">
+                        <div class="audit-tool__checkboxes">
+                            <label class="audit-tool__checkbox">
+                                <input type="checkbox" name="audit" value="security" checked>
+                                <span>Security</span>
+                            </label>
+                            <label class="audit-tool__checkbox">
+                                <input type="checkbox" name="audit" value="quality" checked>
+                                <span>Quality</span>
+                            </label>
+                            <label class="audit-tool__checkbox">
+                                <input type="checkbox" name="audit" value="performance" checked>
+                                <span>Performance</span>
+                            </label>
+                            <label class="audit-tool__checkbox">
+                                <input type="checkbox" name="audit" value="best_practices" checked>
+                                <span>Best Practices</span>
+                            </label>
+                        </div>
+
+                        <select id="depth" class="audit-tool__select">
+                            <option value="quick">Quick Analysis</option>
+                            <option value="standard" selected>Standard Analysis</option>
+                            <option value="deep">Deep Analysis</option>
+                        </select>
+
+                    </div>
+
+                    <button id="audit-btn" class="audit-tool__submit" onclick="runAudit()">
+                        <svg id="btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
+                        </svg>
+                        <span id="btn-text">Run Audit</span>
+                    </button>
+
+                    <!-- Loading State -->
+                    <div id="loading" class="audit-loading">
+                        <div class="audit-loading__spinner"></div>
+                        <p class="audit-loading__text" id="loading-text">Analyzing code changes...</p>
+                        <p class="audit-loading__subtext">Evidence-based analysis in progress</p>
+                    </div>
+
+                    <!-- Results -->
+                    <div id="results" class="audit-results">
+                        <!-- Summary Cards -->
+                        <div class="audit-results__summary">
+                            <div class="summary-card">
+                                <div id="overall-score" class="summary-card__value">--</div>
+                                <div class="summary-card__label">Overall Score</div>
+                            </div>
+                            <div class="summary-card">
+                                <div id="risk-level" class="summary-card__value">--</div>
+                                <div class="summary-card__label">Risk Level</div>
+                            </div>
+                            <div class="summary-card">
+                                <div id="total-findings" class="summary-card__value">--</div>
+                                <div class="summary-card__label">Total Findings</div>
+                            </div>
+                            <div class="summary-card">
+                                <div id="critical-count" class="summary-card__value">--</div>
+                                <div class="summary-card__label">Critical Issues</div>
+                            </div>
+                        </div>
+
+                        <!-- Executive Summary -->
+                        <div class="audit-results__executive">
+                            <h3>Executive Summary</h3>
+                            <p id="summary-text"></p>
+                            <div id="verdict-box" class="audit-results__verdict"></div>
+                        </div>
+
+                        <!-- Audit Tabs -->
+                        <div class="audit-tabs">
+                            <div id="audit-tabs" class="audit-tabs__nav">
+                                <!-- Tabs inserted by JS -->
+                            </div>
+                            <div id="audit-content" class="audit-tabs__content">
+                                <!-- Content inserted by JS -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section id="stats" class="section">
+        <div class="container">
+            <div class="section-label">04 &mdash; Impact</div>
+
+            <div class="section__header">
+                <h2>Built for <em class="text-italic">results</em></h2>
+                <p class="section__description">
+                    Comprehensive analysis across multiple dimensions,
+                    powered by decentralized compute on Akash Network.
+                </p>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card reveal">
+                    <div class="stat-card__value">4</div>
+                    <div class="stat-card__label">Audit Dimensions</div>
+                </div>
+                <div class="stat-card reveal">
+                    <div class="stat-card__value">85+</div>
+                    <div class="stat-card__label">Vulnerability Patterns</div>
+                </div>
+                <div class="stat-card reveal">
+                    <div class="stat-card__value stat-card__value--akash">3</div>
+                    <div class="stat-card__label">LLM Models on Akash</div>
+                </div>
+                <div class="stat-card reveal">
+                    <div class="stat-card__value">100%</div>
+                    <div class="stat-card__label">Decentralized</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section cta-section">
+        <div class="container">
+            <h2>Ready to ship<br><em class="text-italic">with confidence?</em></h2>
+
+            <div class="hero__ctas" style="margin-top: 40px;">
+                <a href="#demo" class="btn btn--primary">
+                    Start Analyzing
+                    <svg class="btn__arrow btn__arrow--diagonal" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                    </svg>
+                </a>
+                <a href="https://github.com" class="btn btn--ghost" target="_blank" rel="noopener">
+                    View on GitHub
+                    <svg class="btn__arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12H19M19 12L12 5M19 12L12 19"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__inner">
+                <div class="footer__brand-section">
+                    <div class="footer__brand">AUDITOR<span class="akash-red">.</span></div>
+                    <p class="footer__tagline">Decentralized AI code review powered by Akash Network</p>
+                </div>
+
+                <ul class="footer__links">
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#process">Process</a></li>
+                    <li><a href="#demo">Demo</a></li>
+                    <li><a href="https://akash.network" target="_blank" rel="noopener" class="footer__link--akash">Akash</a></li>
+                    <li><a href="https://x.com/aayushcb" target="_blank" rel="noopener">X</a></li>
+                    <li><a href="https://www.linkedin.com/in/aayush-baniya-a30551223/" target="_blank" rel="noopener">LinkedIn</a></li>
+                </ul>
+
+                <p class="footer__credit">
+                    Built with <span class="akash-red">&hearts;</span> at AkashML Build Night Hackathon &middot; January 2026 &middot; Demo Expired
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="/static/app.js"></script>
+</body>
+</html>
